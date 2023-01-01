@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>My Counter</h1>
+      <h2>My Counter</h2>
       <Counter counter={counter} />
 
       <button type="button" onClick={() => setCounter(counter + 1)}>
