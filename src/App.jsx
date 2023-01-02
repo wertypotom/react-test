@@ -37,7 +37,6 @@ const App = () => {
     <div>
       <h2>My Counter</h2>
       <Counter counter={counter} />
-
       <button type="button" onClick={() => setCounter(counter + 1)}>
         Increment
       </button>

@@ -1,3 +1,5 @@
 {
-  "testRegex": "((\\.|/*.)(test))\\.js?$"
+  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"]
 }
