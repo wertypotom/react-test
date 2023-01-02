@@ -41,7 +41,7 @@ function SearchComponent() {
     );
 }
 
-function Search({ value, onChange, children }) {
+export function Search({ value, onChange, children }) {
     return (
         <div>
             <label htmlFor="search">{children}</label>

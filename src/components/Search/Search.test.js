@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import SearchComponent from './Search';
+import SearchComponent, { Search } from './Search';
 
 
 describe('Testing Search component', () => {
@@ -84,5 +84,28 @@ describe('Testing Search component', () => {
         await userEvent.type(element, 'Javascript')
 
         expect(screen.getByText(/Javascript/)).toBeInTheDocument()
+    })
+
+
+    test('testing callback handling', async () => {
+        const onChange = jest.fn()
+
+        render(
+            <Search value={''} onChange={onChange}>
+                Search:
+            </Search>
+        )
+
+        const element = screen.getByRole('textbox')
+
+        // fireEvent.change(element, {
+        //     target: {
+        //         value: 'JS'
+        //     }
+        // })
+        // expect(onChange).toHaveBeenCalledTimes(1)
+
+        await userEvent.type(element, 'JS is good')
+        expect(onChange).toHaveBeenCalledTimes(10)
     })
 });
