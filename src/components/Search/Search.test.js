@@ -28,4 +28,24 @@ describe('Testing Search component', () => {
         const element = screen.queryByText('some dumb text')
         expect(element).toBeNull()
     })
+
+    test('elements rederred asynchronously', async () => {
+        render(<SearchComponent />)
+
+        const currentElement = screen.queryByText('Signed in as')
+        expect(currentElement).toBeNull()
+
+        const asyncElement = await screen.findByText(/Signed in as/)
+        expect(asyncElement).toBeInTheDocument()
+    })
+
+
+    test('get list of elements', () => {
+        render(<SearchComponent />)
+
+        const listElements = screen.getAllByRole('list-item')
+        listElements.forEach(element => {
+            expect(element).toBeInTheDocument()
+        })
+    })
 });
