@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import SearchComponent from './Search';
 
 
@@ -6,7 +7,7 @@ describe('Testing Search component', () => {
     test('renders Search component', () => {
         render(<SearchComponent />);
 
-        screen.debug()
+        // screen.debug()
     });
 
     test('gets Search component', () => {
@@ -47,5 +48,41 @@ describe('Testing Search component', () => {
         listElements.forEach(element => {
             expect(element).toBeInTheDocument()
         })
+    })
+
+    test('test input field fire event', async () => {
+        render(<SearchComponent />)
+
+        // wait for the user to resolve
+        await screen.findByText(/Signed in as/)
+
+        const element = screen.getByRole('textbox')
+
+        expect(screen.queryByText(/Javascript/)).toBeNull()
+
+        fireEvent.change(element, {
+            target: {
+                value: 'Javascript'
+            }
+        })
+
+        // expect(screen.getByText(/Javascript/)).toBeInTheDocument()
+
+        waitFor(() => {
+            expect(screen.getByText(/Javascript/)).toBeInTheDocument()
+        })
+    })
+
+    test('test input field user event', async () => {
+        render(<SearchComponent />)
+
+        const element = screen.getByRole('textbox')
+        await screen.findByText(/Signed in as/);
+
+        expect(screen.queryByText(/Javascript/)).toBeNull()
+
+        await userEvent.type(element, 'Javascript')
+
+        expect(screen.getByText(/Javascript/)).toBeInTheDocument()
     })
 });

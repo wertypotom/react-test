@@ -44,7 +44,7 @@ function SearchComponent() {
 function Search({ value, onChange, children }) {
     return (
         <div>
-            <label for="search">{children}</label>
+            <label htmlFor="search">{children}</label>
             <input
                 role='textbox'
                 id="search"
