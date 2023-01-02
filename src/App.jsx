@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Stories from './components/Stories/Stories';
 
 export const dataReducer = (state, action) => {
   if (action.type === 'SET_ERROR') {
@@ -54,6 +55,8 @@ const App = () => {
           <li key={item.objectID}>{item.title}</li>
         ))}
       </ul>
+
+      <Stories />
     </div>
   );
 };

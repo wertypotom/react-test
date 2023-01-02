@@ -26,6 +26,18 @@ exports[`App snapshot tests 1`] = `
     My Async Data
   </h2>
   <ul />
+  <div>
+    <button
+      onClick={[Function]}
+      role="button"
+      type="button"
+    >
+      Fetch Stories
+    </button>
+    <ul
+      role="listbox"
+    />
+  </div>
 </div>
 `;
 

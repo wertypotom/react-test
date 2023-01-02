@@ -7,7 +7,11 @@ function Stories() {
     const [stories, setStories] = React.useState([]);
     const [error, setError] = React.useState(null);
 
-    async function handleFetch(event) {
+    React.useEffect(() => {
+        handleFetch()
+    }, [])
+
+    async function handleFetch() {
         let result;
 
         try {
@@ -21,13 +25,13 @@ function Stories() {
 
     return (
         <div>
-            <button type="button" onClick={handleFetch}>
+            <button role='button' type="button" onClick={handleFetch}>
                 Fetch Stories
             </button>
 
             {error && <span>Something went wrong ...</span>}
 
-            <ul>
+            <ul role='listbox'>
                 {stories.map((story) => (
                     <li key={story.objectID}>
                         <a href={story.url}>{story.title}</a>
